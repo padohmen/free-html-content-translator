@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gratis hardcoded-inhoud in HTML Vertaler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/app.css">
+  <link rel="alternate" href="/app/en/" hreflang="en">
+  <link rel="alternate" href="/app/nl/" hreflang="nl">
+  <link rel="alternate" href="/app/de/" hreflang="de">
+  <link rel="alternate" href="/app/fr/" hreflang="fr">
+  <link rel="alternate" href="/app/it/" hreflang="it">
+  <link rel="alternate" href="/app/es/" hreflang="es">
+  <link rel="alternate" href="/app/pt/" hreflang="pt">
+  <link rel="alternate" href="/app/en/" hreflang="x-default">
+</head>
+<body>
+  <div class="card">
+
+    <header class="app-header">
+      <div class="ui-language-wrapper">
+        <label for="uiLang" id="t_ui_lang_label">App-taal</label>
+        <select id="uiLang">
+          <option value="EN">English</option>
+          <option value="DE">Deutsch</option>
+          <option value="FR">Français</option>
+          <option value="IT">Italiano</option>
+          <option value="ES">Español</option>
+          <option value="NL">Nederlands</option>
+          <option value="PT">Português</option>
+        </select>
+      </div>
+      <h1 id="t_title">Gratis hardcoded-inhoud in HTML Vertaler</h1>
+    </header>
+    
+    <p id="t_sub" class="sub">Heb je een HTML-bestand vol tekst? Deze app vertaalt het direct en foutloos—zonder je HTML-tags aan te passen. Vertaal je website in meerdere talen binnen enkele minuten en bereik moeiteloos een wereldwijd publiek. Kies een doeltaal en vertaal!</p>
+    <div class="app">
+      <div class="grid">
+        <div class="grid two">
+          <div>
+            <label for="lang" id="t_target_lang_label">Doeltaal</label>
+            <select id="lang">
+              <option value="EN">English</option>
+              <option value="DE">Deutsch</option>
+              <option value="FR">Français</option>
+              <option value="IT">Italiano</option>
+              <option value="ES">Español</option>
+              <option value="NL">Nederlands</option>
+              <option value="PT">Português</option>
+            </select>
+          </div>
+          <div>
+            <label id="t_file_label">HTML-bestand</label>
+            <div class="file-wrap">
+              <input class="file-input" type="file" id="htmlFile" accept=".html,.htm" />
+              <button class="file-btn" id="fileBtn" type="button">Bestand kiezen</button>
+              <span class="file-name" id="fileName">Geen bestand gekozen</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div>
+            <label for="filename" id="t_filename_label">Bestandsnaam</label>
+            <input type="text" id="filename" placeholder="translated.html" value="translated.html" />
+            <div class="hint" id="t_filename_hint">Tip: eindig op .html of .htm</div>
+          </div>
+          <div>
+            <label for="chooseLocation" id="t_saveloc_label">Opslaglocatie</label>
+            <div class="row">
+              <input type="checkbox" id="chooseLocation" /> <span id="t_saveloc_checkbox">Opslaan-venster gebruiken (File System Access API)</span>
+            </div>
+            <div class="hint" id="t_saveloc_hint">Werkt in Chrome/Edge (beveiligde context). Anders je standaard downloadmap.</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn" id="btnTranslate">🔁 Vertalen</button>
+          <button class="btn" id="btnDownload" disabled>💾 Download</button>
+        </div>
+        <div id="progress" class="progress">Bezig met vertalen… <span id="progressPct">0%</span></div>
+      </div>
+
+      <textarea id="output" placeholder="De vertaalde HTML verschijnt hier…"></textarea>
+
+      <div id="msgOk" class="message ok">✅ Vertaling voltooid.</div>
+      <div id="msgErr" class="message err"></div>
+    </div>
+
+    <div class="footer" id="t_footer">Free HTML Translator via lokale proxy. HTML blijft behouden; alleen zichtbare tekst wordt aangepast.</div>
+  </div>
+
+  <script>window.I18N = {"title": "Gratis hardcoded-inhoud in HTML Vertaler", "sub": "Heb je een HTML-bestand vol tekst? Deze app vertaalt het direct en foutloos—zonder je HTML-tags aan te passen. Vertaal je website in meerdere talen binnen enkele minuten en bereik moeiteloos een wereldwijd publiek. Kies een doeltaal en vertaal!", "uiLangLabel": "App-taal", "targetLangLabel": "Doeltaal", "fileLabel": "HTML-bestand", "chooseFile": "Bestand kiezen", "noFile": "Geen bestand gekozen", "filenameLabel": "Bestandsnaam", "filenameHint": "Tip: eindig op .html of .htm", "saveLocLabel": "Opslaglocatie", "saveLocCheckbox": "Opslaan-venster gebruiken (File System Access API)", "saveLocHint": "Werkt in Chrome/Edge (beveiligde context). Anders je standaard downloadmap.", "btnTranslate": "🔁 Vertalen", "btnDownload": "💾 Download", "progress": "Bezig met vertalen…", "textareaPh": "De vertaalde HTML verschijnt hier…", "okDone": "✅ Vertaling voltooid.", "okSaved": "💾 Bestand opgeslagen.", "okDlStarted": "💾 Download gestart.", "errNoFile": "Selecteer eerst een HTML-bestand.", "errNoText": "Geen vertaalbare tekst gevonden.", "errTranslate": "❌ Vertalen mislukt: ", "errSaveCanceled": "Opslaan geannuleerd.", "errNoOutput": "Geen vertaalde HTML beschikbaar.", "footer": "Free HTML Translator via lokale proxy. HTML blijft behouden; alleen zichtbare tekst wordt aangepast."}; window.PROXY_URL='http://localhost:8787/translate';</script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

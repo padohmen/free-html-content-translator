@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traductor gratuito de contenido codificado en HTML</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/app.css">
+  <link rel="alternate" href="/app/en/" hreflang="en">
+  <link rel="alternate" href="/app/nl/" hreflang="nl">
+  <link rel="alternate" href="/app/de/" hreflang="de">
+  <link rel="alternate" href="/app/fr/" hreflang="fr">
+  <link rel="alternate" href="/app/it/" hreflang="it">
+  <link rel="alternate" href="/app/es/" hreflang="es">
+  <link rel="alternate" href="/app/pt/" hreflang="pt">
+  <link rel="alternate" href="/app/en/" hreflang="x-default">
+</head>
+<body>
+  <div class="card">
+
+    <header class="app-header">
+      <div class="ui-language-wrapper">
+        <label for="uiLang" id="t_ui_lang_label">Idioma de la app</label>
+        <select id="uiLang">
+          <option value="EN">English</option>
+          <option value="DE">Deutsch</option>
+          <option value="FR">Français</option>
+          <option value="IT">Italiano</option>
+          <option value="ES">Español</option>
+          <option value="NL">Nederlands</option>
+          <option value="PT">Português</option>
+        </select>
+      </div>
+      <h1 id="t_title">Traductor gratuito de contenido codificado en HTML</h1>
+    </header>
+    
+    <p id="t_sub" class="sub">¿Tienes un archivo HTML lleno de texto? Esta aplicación lo traduce al instante y sin errores, sin tocar tus etiquetas HTML. Traduce tu sitio web a varios idiomas en minutos y llega sin esfuerzo a una audiencia global. ¡Elige un idioma de destino y traduce!</p>
+    <div class="app">
+      <div class="grid">
+        <div class="grid two">
+          <div>
+            <label for="lang" id="t_target_lang_label">Idioma de destino</label>
+            <select id="lang">
+              <option value="EN">English</option>
+              <option value="DE">Deutsch</option>
+              <option value="FR">Français</option>
+              <option value="IT">Italiano</option>
+              <option value="ES">Español</option>
+              <option value="NL">Nederlands</option>
+              <option value="PT">Português</option>
+            </select>
+          </div>
+          <div>
+            <label id="t_file_label">Archivo HTML</label>
+            <div class="file-wrap">
+              <input class="file-input" type="file" id="htmlFile" accept=".html,.htm" />
+              <button class="file-btn" id="fileBtn" type="button">Elegir archivo</button>
+              <span class="file-name" id="fileName">Ningún archivo seleccionado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div>
+            <label for="filename" id="t_filename_label">Nombre de archivo</label>
+            <input type="text" id="filename" placeholder="translated.html" value="translated.html" />
+            <div class="hint" id="t_filename_hint">Consejo: termina con .html o .htm</div>
+          </div>
+          <div>
+            <label for="chooseLocation" id="t_saveloc_label">Ubicación de guardado</label>
+            <div class="row">
+              <input type="checkbox" id="chooseLocation" /> <span id="t_saveloc_checkbox">Usar diálogo de guardado (File System Access API)</span>
+            </div>
+            <div class="hint" id="t_saveloc_hint">Funciona en Chrome/Edge (contexto seguro). Si no, carpeta de descargas por defecto.</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn" id="btnTranslate">🔁 Traducir</button>
+          <button class="btn" id="btnDownload" disabled>💾 Descargar</button>
+        </div>
+        <div id="progress" class="progress">Traduciendo… <span id="progressPct">0%</span></div>
+      </div>
+
+      <textarea id="output" placeholder="El HTML traducido aparecerá aquí…"></textarea>
+
+      <div id="msgOk" class="message ok">✅ Traducción completada.</div>
+      <div id="msgErr" class="message err"></div>
+    </div>
+
+    <div class="footer" id="t_footer">Free HTML Translator a través de proxy local. El HTML se conserva; solo cambia el texto visible.</div>
+  </div>
+
+  <script>window.I18N = {"title": "Traductor gratuito de contenido codificado en HTML", "sub": "¿Tienes un archivo HTML lleno de texto? Esta aplicación lo traduce al instante y sin errores, sin tocar tus etiquetas HTML. Traduce tu sitio web a varios idiomas en minutos y llega sin esfuerzo a una audiencia global. ¡Elige un idioma de destino y traduce!", "uiLangLabel": "Idioma de la app", "targetLangLabel": "Idioma de destino", "fileLabel": "Archivo HTML", "chooseFile": "Elegir archivo", "noFile": "Ningún archivo seleccionado", "filenameLabel": "Nombre de archivo", "filenameHint": "Consejo: termina con .html o .htm", "saveLocLabel": "Ubicación de guardado", "saveLocCheckbox": "Usar diálogo de guardado (File System Access API)", "saveLocHint": "Funciona en Chrome/Edge (contexto seguro). Si no, carpeta de descargas por defecto.", "btnTranslate": "🔁 Traducir", "btnDownload": "💾 Descargar", "progress": "Traduciendo…", "textareaPh": "El HTML traducido aparecerá aquí…", "okDone": "✅ Traducción completada.", "okSaved": "💾 Guardado correctamente.", "okDlStarted": "💾 Descarga iniciada.", "errNoFile": "Seleccione un archivo HTML.", "errNoText": "No se encontró texto traducible.", "errTranslate": "❌ Error de traducción: ", "errSaveCanceled": "Guardado cancelado.", "errNoOutput": "No hay HTML traducido disponible.", "footer": "Free HTML Translator a través de proxy local. El HTML se conserva; solo cambia el texto visible."}; window.PROXY_URL='http://localhost:8787/translate';</script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

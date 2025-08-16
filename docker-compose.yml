@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "8070:80"
+    depends_on:
+      - proxy
+  proxy:
+    build:
+      context: ./proxy
+    environment:
+      - PORT=8787
+      - DEEPL_KEY=${DEEPL_KEY}
+      - DEEPL_API_URL=${DEEPL_API_URL:-https://api-free.deepl.com/v2/translate}
+    ports:
+      - "8787:8787"
