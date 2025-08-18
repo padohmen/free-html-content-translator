@@ -1,0 +1,87 @@
+Free HTML Translator App — Functies & Overzicht
+==================================================
+
+1) End-user features (UI/UX)
+- HTML → HTML vertalen (DeepL): vertaalt uitsluitend zichtbare tekst; HTML-tags/structuur blijven intact.
+- Doeltaal kiezen: dropdown met ISO-codes; stuurt correcte target_lang naar DeepL.
+- App-taal wisselen + SEO-structuur: UI-selector synchroniseert met URL (/app/<taal>/); gekozen waarde blijft geselecteerd na redirect.
+- Bestandsselectie UX: “Kies bestand”-knop met weergave bestandsnaam (keyboard-toegankelijk).
+- Voortgangsindicator: procentuele voortgang per chunk; knoppen gaan in ‘busy’-state.
+- Resultaat tonen: volledige vertaalde HTML zichtbaar in een tekstveld.
+- Downloadmogelijkheden: standaard blob-download én File System Access API (indien beschikbaar).
+- Bestandsnaam-sanitizing: dwingt .html/.htm af en verwijdert ongeldige tekens.
+- Heldere foutmeldingen: o.a. geen bestand, geen vertaalbare tekst, proxy/DeepL-fouten (incl. Retry-After weergave).
+
+2) Vertaal-engine (frontendlogica)
+- Tekstnode-detectie: alleen text nodes onder <body>, uitgesloten: <script>, <style>, <noscript>.
+- Chunking: batches van ~48.000 tekens (marge onder DeepL’s 50k limiet per request).
+- Integriteitscheck: #vertalingen == #ingezonden tekstsegmenten; anders fout.
+- Doctype-behoud: output = <!doctype html> + documentElement.outerHTML.
+
+3) I18N (UI-teksten)
+- Optioneel JSON-gedreven: laadt /assets/i18n/<lang>.json en vult window.I18N.
+- Fallbacks: ingebouwde strings als er geen JSON is.
+- SEO-vriendelijk: per taal eigen map (/app/<taal>/) en ondersteuning voor <html lang="xx">.
+
+4) Veiligheid & CSP
+- Strikte, single-line Content-Security-Policy (PowerShell/iwr-proof):
+  default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+- Geen inline scripts / geen externe CDN’s; alle JS in /assets/app.js.
+- Security headers: X-Frame-Options=DENY, X-Content-Type-Options=nosniff, Referrer-Policy=strict-origin-when-cross-origin, Permissions-Policy (geolocation, microphone, camera).
+
+5) Backend (proxy)
+- Endpoints:
+  - POST /translate  → body: { texts: string[], targetLang: string } → { translations: string[] }
+  - GET  /health     → { ok: true }
+- DeepL-koppeling:
+  - Authorization: DeepL-Auth-Key <KEY>
+  - Content-Type: application/x-www-form-urlencoded
+  - Endpoint: api-free.deepl.com voor Free-keys (:fx), api.deepl.com voor Pro (configureerbaar via .env).
+- Foutafhandeling: geeft status/boodschap van DeepL door; toont Retry-After indien aanwezig.
+- CORS: toegestaan (ruim), maar frontend gebruikt same-origin via nginx reverse proxy.
+
+6) Webserver (nginx)
+- Static hosting van /usr/share/nginx/html met strikte try_files (404 bij onbekende paden).
+- Root redirect: /  →  /app/en/
+- API reverse proxy: location /api/ → proxy_pass http://proxy:8787/; (trailing slash voor correcte padrewrites).
+- Performance basics: sendfile, keep-alive; client_max_body_size 2m.
+- Config as code: volledige nginx.conf in image; geen inline overrides nodig.
+
+7) Containerization & deployment
+- Docker Compose met 2 services:
+  - web  (nginx)  — hostpoort 8070:80
+  - proxy (Node)  — intern (expose 8787), niet direct publiek
+- Bind mounts voor snelle iteratie (dev):
+  - ./site/app    → /usr/share/nginx/html/app
+  - ./site/assets → /usr/share/nginx/html/assets
+- Dockerfiles:
+  - nginx: kopieert nginx.conf en site/ naar image
+  - proxy: Node 18-alpine, CommonJS (server.cjs), alleen prod-deps
+- .env-gestuurde configuratie: DEEPL_KEY, DEEPL_API_URL, PORT (zonder quotes).
+
+8) Developer experience
+- Hot-reload-achtige workflow via bind mounts; rebuild niet nodig voor HTML/CSS/JS.
+- Heldere diagnosetools: docker compose logs web|proxy, /api/health, curl-tests.
+- PowerShell-proof headers (single-line CSP) en testcommando’s met curl.exe.
+
+9) Toegankelijkheid & ergonomie
+- Keyboard-toegankelijke bestandsknop (Enter/Space).
+- Consistente UI-states: knoppen disabled tijdens werk; duidelijke success/error banners.
+- Optionele features hebben fallbacks (I18N JSON, File System Access).
+
+10) Beheer & stabiliteit
+- DeepL-key blijft serverside (niet in frontend).
+- Nette timeouts richting DeepL; transparante errors.
+- Strikte origin-policy met CSP + same-origin API (minder risico op data-exfiltratie).
+
+11) Bekende beperkingen / backlog
+- Rate limiting in backend (wens: 50k chars per vertaling + 5s cooldown) — nog te implementeren.
+- Geen batch/ZIP vertaling van meerdere HTML-bestanden.
+- UI-i18n bundels beperkt; uitbreiden mogelijk.
+- Geen authenticatie/autorisatie voor proxy (bewust minimalistisch).
+- Geen metrics/tracing; enkel logs/health.
+- SEO hreflang/rel=alternate links (optioneel te genereren per taal).
+- CSP openstelling voor externe fonts/afbeeldingen (nu strikt op 'self' + data: voor images).
+- UI polish: drag & drop, theming/dark mode.
+
+Einde overzicht.
