@@ -21,15 +21,15 @@
     <header class="app-header">
       <div class="ui-language-wrapper">
         <label for="uiLang" id="t_ui_lang_label">App-taal</label>
-        <select id="uiLang">
-          <option value="EN">English</option>
-          <option value="DE">Deutsch</option>
-          <option value="FR">Français</option>
-          <option value="IT">Italiano</option>
-          <option value="ES">Español</option>
-          <option value="NL">Nederlands</option>
-          <option value="PT">Português</option>
-        </select>
+       <select id="uiLang">
+		  <option value="/app/en/">English</option>
+		  <option value="/app/nl/">Nederlands</option>
+		  <option value="/app/de/">Deutsch</option>
+		  <option value="/app/fr/">Français</option>
+		  <option value="/app/it/">Italiano</option>
+		  <option value="/app/es/">Español</option>
+		  <option value="/app/pt/">Português</option>
+		</select>
       </div>
       <h1 id="t_title">Gratis hardcoded-inhoud in HTML Vertaler</h1>
     </header>
@@ -90,9 +90,6 @@
 
     <div class="footer" id="t_footer">Free HTML Translator via lokale proxy. HTML blijft behouden; alleen zichtbare tekst wordt aangepast.</div>
   </div>
-
-  <script>window.I18N = {"title": "Gratis hardcoded-inhoud in HTML Vertaler", "sub": "Heb je een HTML-bestand vol tekst? Deze app vertaalt het direct en foutloos—zonder je HTML-tags aan te passen. Vertaal je website in meerdere talen binnen enkele minuten en bereik moeiteloos een wereldwijd publiek. Kies een doeltaal en vertaal!", "uiLangLabel": "App-taal", "targetLangLabel": "Doeltaal", "fileLabel": "HTML-bestand", "chooseFile": "Bestand kiezen", "noFile": "Geen bestand gekozen", "filenameLabel": "Bestandsnaam", "filenameHint": "Tip: eindig op .html of .htm", "saveLocLabel": "Opslaglocatie", "saveLocCheckbox": "Opslaan-venster gebruiken (File System Access API)", "saveLocHint": "Werkt in Chrome/Edge (beveiligde context). Anders je standaard downloadmap.", "btnTranslate": "🔁 Vertalen", "btnDownload": "💾 Download", "progress": "Bezig met vertalen…", "textareaPh": "De vertaalde HTML verschijnt hier…", "okDone": "✅ Vertaling voltooid.", "okSaved": "💾 Bestand opgeslagen.", "okDlStarted": "💾 Download gestart.", "errNoFile": "Selecteer eerst een HTML-bestand.", "errNoText": "Geen vertaalbare tekst gevonden.", "errTranslate": "❌ Vertalen mislukt: ", "errSaveCanceled": "Opslaan geannuleerd.", "errNoOutput": "Geen vertaalde HTML beschikbaar.", "footer": "Free HTML Translator via lokale proxy. HTML blijft behouden; alleen zichtbare tekst wordt aangepast."}; window.PROXY_URL='http://localhost:8787/translate';</script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/assets/app.js"></script>
 </body>
 </html>

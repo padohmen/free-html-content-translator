@@ -22,14 +22,14 @@
       <div class="ui-language-wrapper">
         <label for="uiLang" id="t_ui_lang_label">Idioma de la app</label>
         <select id="uiLang">
-          <option value="EN">English</option>
-          <option value="DE">Deutsch</option>
-          <option value="FR">Français</option>
-          <option value="IT">Italiano</option>
-          <option value="ES">Español</option>
-          <option value="NL">Nederlands</option>
-          <option value="PT">Português</option>
-        </select>
+		  <option value="/app/en/">English</option>
+		  <option value="/app/nl/">Nederlands</option>
+		  <option value="/app/de/">Deutsch</option>
+		  <option value="/app/fr/">Français</option>
+		  <option value="/app/it/">Italiano</option>
+		  <option value="/app/es/">Español</option>
+		  <option value="/app/pt/">Português</option>
+		</select>
       </div>
       <h1 id="t_title">Traductor gratuito de contenido codificado en HTML</h1>
     </header>
@@ -90,9 +90,6 @@
 
     <div class="footer" id="t_footer">Free HTML Translator a través de proxy local. El HTML se conserva; solo cambia el texto visible.</div>
   </div>
-
-  <script>window.I18N = {"title": "Traductor gratuito de contenido codificado en HTML", "sub": "¿Tienes un archivo HTML lleno de texto? Esta aplicación lo traduce al instante y sin errores, sin tocar tus etiquetas HTML. Traduce tu sitio web a varios idiomas en minutos y llega sin esfuerzo a una audiencia global. ¡Elige un idioma de destino y traduce!", "uiLangLabel": "Idioma de la app", "targetLangLabel": "Idioma de destino", "fileLabel": "Archivo HTML", "chooseFile": "Elegir archivo", "noFile": "Ningún archivo seleccionado", "filenameLabel": "Nombre de archivo", "filenameHint": "Consejo: termina con .html o .htm", "saveLocLabel": "Ubicación de guardado", "saveLocCheckbox": "Usar diálogo de guardado (File System Access API)", "saveLocHint": "Funciona en Chrome/Edge (contexto seguro). Si no, carpeta de descargas por defecto.", "btnTranslate": "🔁 Traducir", "btnDownload": "💾 Descargar", "progress": "Traduciendo…", "textareaPh": "El HTML traducido aparecerá aquí…", "okDone": "✅ Traducción completada.", "okSaved": "💾 Guardado correctamente.", "okDlStarted": "💾 Descarga iniciada.", "errNoFile": "Seleccione un archivo HTML.", "errNoText": "No se encontró texto traducible.", "errTranslate": "❌ Error de traducción: ", "errSaveCanceled": "Guardado cancelado.", "errNoOutput": "No hay HTML traducido disponible.", "footer": "Free HTML Translator a través de proxy local. El HTML se conserva; solo cambia el texto visible."}; window.PROXY_URL='http://localhost:8787/translate';</script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/assets/app.js"></script>
 </body>
 </html>
