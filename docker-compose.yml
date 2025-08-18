@@ -15,9 +15,14 @@ services:
     build:
       context: ./proxy
     environment:
-      - PORT=8787
-      - DEEPL_KEY=${DEEPL_KEY}
-      - DEEPL_API_URL=${DEEPL_API_URL}
+      PORT: 8787
+      DEEPL_KEY: ${DEEPL_KEY}
+      DEEPL_API_URL: ${DEEPL_API_URL}
+      RATE_MAX_CHARS: ${RATE_MAX_CHARS:-50000}
+      RATE_COOLDOWN_MS: ${RATE_COOLDOWN_MS:-5000}
+      RATE_COOLDOWN_GLOBAL_MS: ${RATE_COOLDOWN_GLOBAL_MS:-0}
+      BATCH_INTER_DELAY_MS: ${BATCH_INTER_DELAY_MS:-0}
+      RATE_MAX_TOTAL_CHARS: ${RATE_MAX_TOTAL_CHARS:-0}
+      ENABLE_METRICS: ${ENABLE_METRICS:-0}
     expose:
       - "8787"
-    
