@@ -1,0 +1,18 @@
+69dc23c4-9025-4f55-be48-3a3eb33cac4d:fx
+
+SHA256:CtLfoiAYLf7yv2qV6NcR0QNY3K4x7A5atz7KwTyZXG8 oracle
+
++--[ED25519 256]--+
+|      +o+        |
+|     . o +       |
+|      . o .      |
+| . .   = .       |
+|o o + o.S        |
+|oo o+B+B.        |
+|o.o +OO +E       |
+| o.=.oo*.        |
+|  ++==+..        |
++----[SHA256]-----+
+
+
+docker compose exec proxy sh -lc 'echo "URL=$DEEPL_API_URL"; node -e "console.log(\"KEY_SUFFIX=\"+(process.env.DEEPL_KEY||\"\").slice(-4))"'

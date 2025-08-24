@@ -1,0 +1,19 @@
+ssh-keygen -t ed25519 -C "fht_prd" -f ~/.ssh/fht_prd
+# Choose a passphrase (recommended)
+cat ~/.ssh/fht_prd.pub
+
+
+ssh -i "$env:USERPROFILE\.ssh\fht_prd" ubuntu@92.5.237.228
+
+scp -i "$env:USERPROFILE\.ssh\fht_prd" -r . ubuntu@92.5.237.228:/opt/free-html-translator-app
+
+
+
+ http://92.5.237.228/app/en/
+ 
+ 
+ scp -i $env:USERPROFILE\.ssh\fht_prd privkey.pem   ubuntu@92.5.237.228:/tmp/
+ scp -i $env:USERPROFILE\.ssh\fht_prd fullchain.pem ubuntu@92.5.237.228:/tmp/
+ 
+ 
+ curl -I --resolve translator.most-intelligent.com:443:92.5.237.228 https://translator.most-intelligent.com/app/en/
